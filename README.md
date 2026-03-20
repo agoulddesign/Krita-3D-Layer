@@ -1,4 +1,4 @@
-# Krita 3D Layer Plugin
+# Krita 3D Layer Plugin ALPHA
 
 A simple Krita plugin that seamlessly integrates 3D models (`.obj` and `.glb`) into your 2D painting workflow. It provides a hardware-accelerated 3D viewport, allowing you to manipulate and link 3D models directly to your Krita layers. Additionally, it features direct integration with ComfyUI for generating 3D models straight from your Krita canvas!
 
@@ -40,6 +40,10 @@ A simple Krita plugin that seamlessly integrates 3D models (`.obj` and `.glb`) i
 ## 📦 Dependencies
 
 This plugin requires the standard Krita Python environment modules (PyQt5) and avoids heavy external dependencies like NumPy, keeping it lightweight, fast, and extremely stable across Krita installations. **Note: If you are installing via `git clone`, you will need to manually ensure OpenGL libraries (e.g., PyOpenGL) are available in your environment. For the best experience, it is highly recommended to use the latest release ZIP which comes with all necessary libraries pre-bundled.**
+
+## Compatability
+
+Currently only tested on Windows 10/11 and Krita versions 5.2.11 and 5.2.14. Please report any incompatibility, bugs or odd behavior. THIS IS STILL AN ALPHA RELEASE, so don't expect perfection.
 
 ## 🤝 Acknowledgements & Credits
 
