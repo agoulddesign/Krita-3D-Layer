@@ -26,8 +26,11 @@ A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D
 2. Click **Load Model** to select a `.glb` or `.obj` file.
 3. Use your mouse to rotate (Left Click), pan (Middle Click or Shift+Left Click), and zoom (Scroll Wheel) the model.
 4. Switch to **Walk** mode to explore large architectural scenes or environments in first-person.
-5. The plugin should automatically synch the layer to canvas, but if it doesn't click **Sync to Canvas** to apply the current view to your active Krita layer.
+5. The plugin should automatically sync the layer to canvas, but if it doesn't click **Sync to Canvas** to apply the current view to your active Krita layer.
 6. Click on previously baked layer to restore the model and camera angles. Select a non-baked layer before importing a new model or the plugin will overwrite the previous model already baked into that layer
+
+** If your model is imported in at an unexpected orientation, you can A) rotate to the desired position and click "Set Axis" or B) change the model offset X/Y/Z rotation in options. (I had to re-map the OpenGL Y-axis up to achive a standard Z-axis up, and my logic may not be 100% correct)
+** The current model import function only supports one mesh, so if your mesh is segmented, or contains many individual objects, it's recommended to separate them and import individually, or do something like "Join" all the objects in Blender before exporting. This is still hit or miss and I plan on addressing the issue in future releases.
 
 ### ComfyUI Generating (Generate Tab)
 *Please see the `example_comfyui_workflows/readme.md` for specific ComfyUI setup instructions.*
