@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krita 3D Layer Plugin Manual</title>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --accent-color: #60a5fa;
+            --code-bg: #1e293b;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1, h2, h3 {
+            color: var(--accent-color);
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .container {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Fira Code", monospace;
+        }
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #334155;
+        }
+        .feature-card {
+            background: #334155;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .installation-steps ol {
+            padding-left: 20px;
+        }
+        .installation-steps li {
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #94a3b8;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Krita 3D Layer Plugin</h1>
+        
+        <p>Welcome to the <strong>Krita 3D Layer Plugin</strong>! This tool allows you to seamlessly integrate 3D models into your 2D painting workflow by managing them as synchronized layers within Krita.</p>
+
+        <h2>✨ Key Features</h2>
+        <div class="feature-card">
+            <h3>Layer-Linked 3D State</h3>
+            <p>Import and position your 3D model and click "Apply Layer". The plugin bakes the 3D state (model path, camera angles, rotations) into the layer registry, allowing you to return to any previous 3D setup instantly.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Orbit & Walk Camera Modes</h3>
+            <p>Freely switch between standard <strong>Orbit</strong> navigation and immersive first-person <strong>Walk</strong> controls (mouse to look, scroll to move).</p>
+        </div>
+        <div class="feature-card">
+            <h3>Generative 3D (ComfyUI)</h3>
+            <p>Direct integration with ComfyUI allows you to generate 3D models directly from your Krita canvas drawings using Image-to-3D workflows.</p>
+        </div>
+
+        <h2>🚀 Standard Installation</h2>
+        <div class="installation-steps">
+            <ol>
+                <li>Download the latest release <code>.zip</code> file.</li>
+                <li>In Krita, go to <strong>Tools -> Scripts -> Import Python Plugin from File...</strong></li>
+                <li>Select the downloaded <code>.zip</code> file and click <strong>OK</strong>.</li>
+                <li>Restart Krita.</li>
+                <li>Enable the plugin in <strong>Settings -> Configure Krita... -> Python Plugin Manager</strong>.</li>
+                <li>Restart Krita once more. The Docker is available under <strong>Settings -> Dockers -> 3D Layer</strong>.</li>
+            </ol>
+            <p><em>Note: If installing via Git clone, you must manually ensure <code>PyOpenGL</code> is available in your environment.</em></p>
+        </div>
+
+        <h2>🎮 Basic Usage</h2>
+        <h3>Local 3D Models</h3>
+        <ul>
+            <li><strong>LMB</strong>: Rotate (Orbit) / Look (Walk)</li>
+            <li><strong>MMB</strong>: Pan (Orbit) / Strafe (Walk)</li>
+            <li><strong>Scroll</strong>: Zoom (Orbit) / Move Forward/Back (Walk)</li>
+            <li><strong>Shift</strong>: Precision mode for all movements.</li>
+        </ul>
+
+        <h3>Generative Workflow</h3>
+        <ol>
+            <li>Draw your subject on a layer with a transparent background.</li>
+            <li>Set your ComfyUI server address in the <strong>Generate</strong> tab.</li>
+            <li>Load your API-formatted workflow JSON.</li>
+            <li>Click <strong>Generate 3D Model</strong>.</li>
+        </ol>
+
+        <h2>📦 Technical details</h2>
+        <p>This plugin uses the Krita Python API and PyQt5 for the interface. 3D rendering is handled by a custom hardware-accelerated OpenGL viewport. It is designed to be lightweight and portable.</p>
+
+        <h2>📝 License</h2>
+        <p>This project is licensed under the <strong>GNU General Public License v3.0 (GPLv3)</strong>.</p>
+
+        <div class="footer">
+            <p>Created by agoulddesign &bull; <a href="https://github.com/agoulddesign/krita-3d-layer">GitHub Repository</a></p>
+        </div>
+    </div>
+</body>
+</html>
