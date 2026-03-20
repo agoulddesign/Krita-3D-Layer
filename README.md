@@ -39,7 +39,7 @@ A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D
 
 ## 📦 Dependencies
 
-This plugin requires the standard Krita Python environment modules (PyQt5) and avoids heavy external dependencies like NumPy, keeping it lightweight, fast, and extremely stable across Krita installations. **Note: If you are installing via `git clone`, you will need to manually ensure OpenGL libraries (e.g., PyOpenGL) are available in your environment. For the best experience, it is highly recommended to use the latest release ZIP which comes with all necessary libraries pre-bundled.**
+**If you are installing via `git clone`, you will need to manually ensure OpenGL libraries (e.g., PyOpenGL) are available in your environment. For the best experience, it is highly recommended to use the latest release ZIP which comes with all necessary libraries pre-bundled.**
 
 ## Compatability
 
@@ -47,9 +47,8 @@ Currently only tested on Windows 10/11 and Krita versions 5.2.11 and 5.2.14. Ple
 
 ## 🤝 Acknowledgements & Credits
 
-This plugin is made possible by several incredible open-source projects and services:
+This plugin is made possible by several incredible open-source projects:
 
-- **[Krita](https://krita.org/)**: The powerful digital painting application that hosts this plugin.
 - **[OpenGL](https://www.opengl.org/)**: The cross-platform graphics API used for our hardware-accelerated 3D viewport.
 - **[comfyui-tooling-nodes](https://github.com/Acly/comfyui-tooling-nodes)**: Created by Acly, essential for high-speed image injection.
 
