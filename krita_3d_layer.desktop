@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=krita_3d_layer
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=Krita 3D Layer
+Comment=Manage 3D objects as synchronized 2D layers on the active Krita document.
