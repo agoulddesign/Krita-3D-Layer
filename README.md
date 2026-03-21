@@ -46,7 +46,7 @@ A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D
 
 ## Compatability
 
-Currently only tested on Windows 10/11 and Krita versions 5.2.11 and 5.2.14. Please report any incompatibility, bugs or odd behavior. THIS IS STILL AN ALPHA RELEASE, so don't expect perfection.
+Currently only tested on Windows 10/11, Ubuntu 24.04, and Krita versions 5.2.11 and 5.2.14. Please report any incompatibility, bugs or odd behavior. THIS IS STILL AN ALPHA RELEASE, so don't expect perfection.
 
 ## 🤝 Acknowledgements & Credits
 
