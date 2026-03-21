@@ -1,6 +1,6 @@
 # Krita 3D Layer Plugin ALPHA
 
-A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D painting workflow. It provides a hardware-accelerated 3D viewport, allowing you to manipulate and link 3D models directly to your Krita layers. Additionally, it features direct integration with ComfyUI for generating 3D models straight from your Krita canvas!
+A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D painting workflow. It provides a hardware-accelerated 3D viewport, allowing you to manipulate and link 3D models directly to your Krita layers. Additionally, it features an optional direct integration with ComfyUI for generating 3D models straight from your Krita canvas (additional software needed).
 
 ## ✨ Features
 
