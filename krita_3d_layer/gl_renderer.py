@@ -352,9 +352,9 @@ class OffscreenGLRenderer:
         az = math.radians(rz_deg)
         
         def rotate_point(p):
-            p = _rot_x(p, ax)
-            p = _rot_y(p, ay)
             p = _rot_z(p, az)
+            p = _rot_y(p, ay)
+            p = _rot_x(p, ax)
             return p
         
         # Rotate vertex buffers
@@ -462,16 +462,16 @@ class OffscreenGLRenderer:
                 view = QMatrix4x4()
                 if getattr(self, 'camera_mode', 'Orbit') == "Walk":
                     # First-Person camera: apply rotations, then translate in World space, then apply model base
-                    view.rotate(self.rotation_x - 180.0, 1, 0, 0) # Pitch
-                    view.rotate(self.rotation_y - 180.0, 0, 1, 0) # Yaw
-                    view.rotate(self.rotation_z - 180.0, 0, 0, 1) # Roll
+                    view.rotate(self.rotation_y - 180.0, 1, 0, 0) # Pitch (Model Y)
+                    view.rotate(self.rotation_z - 180.0, 0, 1, 0) # Yaw (Model Z)
+                    view.rotate(self.rotation_x - 180.0, 0, 0, 1) # Roll (Model X)
                     view.translate(-self.pan_x, -self.pan_y, self.zoom)
                     view = view * self.model_base_matrix
                 else:                     
                     view.translate(self.pan_x, self.pan_y, self.zoom)
-                    view.rotate(self.rotation_x - 180.0, 1, 0, 0) # Pitch
-                    view.rotate(self.rotation_y - 180.0, 0, 1, 0) # Yaw
-                    view.rotate(self.rotation_z - 180.0, 0, 0, 1) # Roll
+                    view.rotate(self.rotation_y - 180.0, 1, 0, 0) # Pitch (Model Y)
+                    view.rotate(self.rotation_z - 180.0, 0, 1, 0) # Yaw (Model Z)
+                    view.rotate(self.rotation_x - 180.0, 0, 0, 1) # Roll (Model X)
                     view = view * self.model_base_matrix
 
                 self.shader.setUniformValue("u_mvpMatrix", proj * view)
@@ -521,9 +521,9 @@ class OffscreenGLRenderer:
                 # Apply interactive rotations only for gizmo
                 # This ensures the gizmo shows the "view" relative to the current basis,
                 # meaning it resets to neutral when the sliders reset to 180.
-                gizmo_view.rotate(self.rotation_x - 180.0, 1, 0, 0)
-                gizmo_view.rotate(self.rotation_y - 180.0, 0, 1, 0)
-                gizmo_view.rotate(self.rotation_z - 180.0, 0, 0, 1)
+                gizmo_view.rotate(self.rotation_y - 180.0, 1, 0, 0)
+                gizmo_view.rotate(self.rotation_z - 180.0, 0, 1, 0)
+                gizmo_view.rotate(self.rotation_x - 180.0, 0, 0, 1)
                 
                 self.gizmo_shader.setUniformValue("u_mvpMatrix", gizmo_proj * gizmo_view)
                 
@@ -715,9 +715,9 @@ class GLRendererWidget(QWidget):
         if not r: return
         
         q = QMatrix4x4()
-        q.rotate(r.rotation_x - 180.0, 1, 0, 0)
-        q.rotate(r.rotation_y - 180.0, 0, 1, 0)
-        q.rotate(r.rotation_z - 180.0, 0, 0, 1)
+        q.rotate(r.rotation_y - 180.0, 1, 0, 0)
+        q.rotate(r.rotation_z - 180.0, 0, 1, 0)
+        q.rotate(r.rotation_x - 180.0, 0, 0, 1)
         q = q * r.model_base_matrix
         
         if from_mode == "Orbit" and to_mode == "Walk":
@@ -742,9 +742,9 @@ class GLRendererWidget(QWidget):
         
         # Create a rotation matrix from current INTERACTIVE rotation
         rot_mat = QMatrix4x4()
-        rot_mat.rotate(r.rotation_x - base, 1, 0, 0)
-        rot_mat.rotate(r.rotation_y - base, 0, 1, 0)
-        rot_mat.rotate(r.rotation_z - base, 0, 0, 1)
+        rot_mat.rotate(r.rotation_y - base, 1, 0, 0)
+        rot_mat.rotate(r.rotation_z - base, 0, 1, 0)
+        rot_mat.rotate(r.rotation_x - base, 0, 0, 1)
         
         # Accumulate into model base matrix
         # Note: Order matters. We want the new rotation to be the new Front.
@@ -776,17 +776,17 @@ class GLRendererWidget(QWidget):
         if getattr(r, 'camera_mode', 'Orbit') == "Walk":
             if l: # Look around
                 invert = -1.0 if getattr(r, 'invert_y', False) else 1.0
-                r.rotation_y += dx * 0.2  # Yaw: mouse right = look right
-                r.rotation_x += dy * 0.2 * invert # Pitch
+                r.rotation_z += dx * 0.2  # Yaw: mouse right = look right (Model Z)
+                r.rotation_y += dy * 0.2 * invert # Pitch (Model Y)
                 # Clamp Pitch to avoid flipping over
-                r.rotation_x = max(90.1, min(269.9, r.rotation_x))
+                r.rotation_y = max(90.1, min(269.9, r.rotation_y))
             elif m or r_btn: # Strafe/Pan
                 # pan_x/pan_y/zoom are in WORLD space (applied before rotation),
                 # so we must use right/up vectors to convert camera-local movement.
                 rmat = QMatrix4x4()
-                rmat.rotate(r.rotation_x - 180.0, 1, 0, 0)
-                rmat.rotate(r.rotation_y - 180.0, 0, 1, 0)
-                rmat.rotate(r.rotation_z - 180.0, 0, 0, 1)
+                rmat.rotate(r.rotation_y - 180.0, 1, 0, 0)
+                rmat.rotate(r.rotation_z - 180.0, 0, 1, 0)
+                rmat.rotate(r.rotation_x - 180.0, 0, 0, 1)
                 # Translation is decoupled from model base matrix
                 
                 right = rmat.row(0).toVector3D()
@@ -803,9 +803,9 @@ class GLRendererWidget(QWidget):
         else: # Orbit mode
             if m or (l and event.modifiers() & Qt.ShiftModifier):
                 r.pan_x += dx * 0.01; r.pan_y -= dy * 0.01
-            elif l and r_btn: r.rotation_z -= dx * 0.5   # Both = Z (Roll) [REVERSED]
-            elif l: r.rotation_y += dx * 0.5             # LMB = Y (Yaw)   [REVERSED]
-            elif r_btn: r.rotation_x += dy * 0.5         # RMB = X (Pitch)
+            elif l and r_btn: r.rotation_x -= dx * 0.5   # Both = Roll (Model X) [REVERSED]
+            elif l: r.rotation_z += dx * 0.5             # LMB = Yaw (Model Z) [REVERSED]
+            elif r_btn: r.rotation_y += dy * 0.5         # RMB = Pitch (Model Y)
             
             r.rotation_x %= 360.0
             r.rotation_y %= 360.0
@@ -823,9 +823,9 @@ class GLRendererWidget(QWidget):
         if getattr(r, 'camera_mode', 'Orbit') == "Walk":
             # Derive forward vector from the rotation matrix
             rmat = QMatrix4x4()
-            rmat.rotate(r.rotation_x - 180.0, 1, 0, 0)
-            rmat.rotate(r.rotation_y - 180.0, 0, 1, 0)
-            rmat.rotate(r.rotation_z - 180.0, 0, 0, 1)
+            rmat.rotate(r.rotation_y - 180.0, 1, 0, 0)
+            rmat.rotate(r.rotation_z - 180.0, 0, 1, 0)
+            rmat.rotate(r.rotation_x - 180.0, 0, 0, 1)
             # Translation decoupled from model base matrix
             fwd = -rmat.row(2).toVector3D()
             
