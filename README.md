@@ -54,6 +54,8 @@ This plugin is made possible by several incredible open-source projects:
 - **[OpenGL](https://www.opengl.org/)**: The cross-platform graphics API used for our hardware-accelerated 3D viewport.
 - **[comfyui-tooling-nodes](https://github.com/Acly/comfyui-tooling-nodes)**: Created by Acly, essential for high-speed image injection.
 
+This plugin and the plugin author is not affiliated with any company or paid service in any formal manner and is provided free of charge without any monetary compensation whatsoever. (You can buy me a coffee if you want though)
+
 ## 📝 License
 
 This project is licensed under the **GNU General Public License v3.0 (GPLv3)** - see the [LICENSE](LICENSE) file for details.
