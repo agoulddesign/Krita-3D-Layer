@@ -14,10 +14,9 @@ A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D
 
 1. Download the latest release `.zip` file.
 2. Open Krita and go to **Tools -> Scripts -> Import Python Plugin from File...**
-3. Select the downloaded `.zip` file and click **OK**.
+3. Select the downloaded `.zip` file and click **OK** and enable plugin.
 4. Restart Krita.
-5. Go to **Settings -> Configure Krita... -> Python Plugin Manager** and ensure **Krita 3D Layer** is enabled.
-6. Restart Krita to load the docker. You can then find it under **Settings -> Dockers -> 3D Layer**.
+5. You can then find it under **Settings -> Dockers -> 3D Layer Manager**.
 
 ## 🎮 Usage
 
