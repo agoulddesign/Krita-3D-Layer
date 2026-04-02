@@ -242,6 +242,19 @@ class Krita3DLayerDocker(DockWidget):
         row_json.addWidget(btn_browse_json)
         layout_gen.addLayout(row_json)
 
+        layout_gen.addWidget(QLabel("ComfyUI Output Path (Local):"))
+        row_out = QHBoxLayout()
+        self.edit_comfy_output = QLineEdit()
+        self.edit_comfy_output.setPlaceholderText("Path to ComfyUI/output folder...")
+        self.edit_comfy_output.editingFinished.connect(self._save_settings)
+        row_out.addWidget(self.edit_comfy_output)
+        btn_browse_out = QPushButton("...")
+        btn_browse_out.setFixedWidth(30)
+        btn_browse_out.clicked.connect(self._on_browse_output)
+        row_out.addWidget(btn_browse_out)
+        layout_gen.addLayout(row_out)
+
+
         self.btn_generate = QPushButton("Generate 3D Model")
         self.btn_generate.setStyleSheet("background-color: #2d5a27; font-weight: bold; min-height: 30px;")
         self.btn_generate.clicked.connect(self._on_generate_click)
@@ -440,9 +453,33 @@ class Krita3DLayerDocker(DockWidget):
     # ── Slots ────────────────────────────────────────────────────────────
 
     def _on_browse_workflow(self):
-        path, _ = QFileDialog.getOpenFileName(self, "Select ComfyUI Workflow JSON", "", "JSON Files (*.api.json *.json)")
+        from PyQt5.QtWidgets import QFileDialog
+        import os
+        
+        current = self.edit_workflow_path.text()
+        initial_dir = ""
+        if current and os.path.exists(os.path.dirname(current)):
+            initial_dir = current
+            
+        path, _ = QFileDialog.getOpenFileName(self, "Select ComfyUI Workflow JSON", initial_dir, "JSON Files (*.api.json *.json)")
         if path:
             self.edit_workflow_path.setText(path)
+            self._save_settings()
+
+    def _on_browse_output(self):
+        from PyQt5.QtWidgets import QFileDialog
+        import os
+        
+        current = self.edit_comfy_output.text()
+        initial_dir = ""
+        if current and os.path.exists(current):
+            initial_dir = current
+            
+        path = QFileDialog.getExistingDirectory(self, "Select ComfyUI Output Folder", initial_dir)
+        if path:
+            self.edit_comfy_output.setText(path)
+            self._save_settings()
+
 
     def _on_toggle_opts(self, checked):
         if checked:
@@ -471,6 +508,7 @@ class Krita3DLayerDocker(DockWidget):
             settings = QSettings("Krita", "3DLayerPlugin")
             settings.setValue("comfyUrl", self.edit_comfy_url.text())
             settings.setValue("workflowPath", self.edit_workflow_path.text())
+            settings.setValue("comfyOutputPath", self.edit_comfy_output.text())
             settings.setValue("timeout", str(self.spin_timeout.value()))
             settings.setValue("importRotX", str(self.spin_import_x.value()))
             settings.setValue("importRotY", str(self.spin_import_y.value()))
@@ -490,6 +528,9 @@ class Krita3DLayerDocker(DockWidget):
             
             saved_wf = settings.value("workflowPath", "")
             self.edit_workflow_path.setText(saved_wf)
+            
+            saved_out = settings.value("comfyOutputPath", "")
+            self.edit_comfy_output.setText(saved_out)
             
             saved_timeout = settings.value("timeout", "5")
             self.spin_timeout.setValue(int(saved_timeout))
@@ -539,7 +580,7 @@ class Krita3DLayerDocker(DockWidget):
         pixel_data = node.pixelData(bounds.x(), bounds.y(), bounds.width(), bounds.height())
         image = QImage(pixel_data, bounds.width(), bounds.height(), QImage.Format_ARGB32)
 
-        self.bridge = ComfyUIBridge(self.edit_comfy_url.text())
+        self.bridge = ComfyUIBridge(self.edit_comfy_url.text(), server_output_path=self.edit_comfy_output.text())
         self.bridge.progressChanged.connect(lambda msg: self.status_label.setText(msg))
         self.bridge.modelReady.connect(self._on_gen_model_ready)
         self.bridge.errorOccurred.connect(self._on_gen_error)

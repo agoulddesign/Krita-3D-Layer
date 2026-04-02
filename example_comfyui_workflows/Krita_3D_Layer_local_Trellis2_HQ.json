@@ -306,7 +306,7 @@
     },
     "class_type": "ETN_LoadImageBase64",
     "_meta": {
-      "title": "Load Image (Base64)"
+      "title": "Krita_Input"
     }
   },
   "45": {
@@ -320,7 +320,7 @@
     },
     "class_type": "Trellis2ExportMesh",
     "_meta": {
-      "title": "Trellis2 - Export Mesh"
+      "title": "Krita_Output"
     }
   },
   "46": {

@@ -10,7 +10,7 @@
     },
     "class_type": "Trellis2ExportMesh",
     "_meta": {
-      "title": "Trellis2 - Export Mesh"
+      "title": "Krita_Output"
     }
   },
   "39": {
@@ -94,7 +94,7 @@
       "remove_background": true,
       "max_size": 2048,
       "image": [
-        "46",
+        "45",
         0
       ]
     },
@@ -109,37 +109,7 @@
     },
     "class_type": "ETN_LoadImageBase64",
     "_meta": {
-      "title": "Load Image (Base64)"
-    }
-  },
-  "46": {
-    "inputs": {
-      "image": "pasted/image (5).png",
-      "upload": "image"
-    },
-    "class_type": "LoadImage",
-    "_meta": {
-      "title": "Load Image"
-    }
-  },
-  "47": {
-    "inputs": {
-      "model_file": [
-        "19",
-        0
-      ],
-      "show_grid": true,
-      "camera_type": "perspective",
-      "view": "front",
-      "material": "original",
-      "bg_color": "#000000",
-      "light_intensity": 10,
-      "up_direction": "original",
-      "fov": 75
-    },
-    "class_type": "Preview3D",
-    "_meta": {
-      "title": "Preview 3D"
+      "title": "Krita_Input"
     }
   }
 }
