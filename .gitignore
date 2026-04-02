@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary or Backup Files
+*.zip
+*.log
+*.bak
+*.tmp
+temp/
+tmp/
+outline.txt
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Project-specific ignores
+krita_3d_layer/OpenGL/
+krita_3d_layer/__pycache__/
+"krita_3d_layer gh/"
+walkthrough.md.resolved
+github_strategy.md
+example_comfyui_workflows/Krita_3D_Layer_local_Trellis2_Simple-too complex.json
+todo.txt
