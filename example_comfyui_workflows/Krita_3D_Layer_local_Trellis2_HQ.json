@@ -1,0 +1,354 @@
+{
+  "11": {
+    "inputs": {
+      "target_face_num": 500000,
+      "method": "Cumesh",
+      "mesh": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "Trellis2SimplifyMesh",
+    "_meta": {
+      "title": "Trellis2 - Simplify Mesh"
+    }
+  },
+  "12": {
+    "inputs": {
+      "padding": 25,
+      "remove_background": true,
+      "max_size": 2048,
+      "image": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "Trellis2PreProcessImage",
+    "_meta": {
+      "title": "Trellis2 - PreProcess Image"
+    }
+  },
+  "14": {
+    "inputs": {
+      "reorient_vertices": "90 degrees",
+      "mesh": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshWithVoxelToTrimesh",
+    "_meta": {
+      "title": "Trellis2 - Mesh With Voxel To Trimesh"
+    }
+  },
+  "16": {
+    "inputs": {
+      "modelname": "visualbruno/TRELLIS.2-4B-FP8",
+      "backend": "xformers",
+      "device": "cuda",
+      "low_vram": false,
+      "keep_models_loaded": false
+    },
+    "class_type": "Trellis2LoadModel",
+    "_meta": {
+      "title": "Trellis2 - LoadModel"
+    }
+  },
+  "17": {
+    "inputs": {
+      "seed": 13025,
+      "pipeline_type": "1024_cascade",
+      "sparse_structure_steps": 25,
+      "sparse_structure_guidance_strength": 6.5,
+      "sparse_structure_guidance_rescale": 0.2,
+      "sparse_structure_rescale_t": 4,
+      "shape_steps": 25,
+      "shape_guidance_strength": 6.5,
+      "shape_guidance_rescale": 0.2,
+      "shape_rescale_t": 4,
+      "texture_steps": 12,
+      "texture_guidance_strength": 3,
+      "texture_guidance_rescale": 0.2,
+      "texture_rescale_t": 3,
+      "max_num_tokens": 999999,
+      "max_views": 4,
+      "sparse_structure_resolution": 32,
+      "generate_texture_slat": false,
+      "sparse_structure_guidance_interval_start": 0.1,
+      "sparse_structure_guidance_interval_end": 1,
+      "shape_guidance_interval_start": 0.1,
+      "shape_guidance_interval_end": 1,
+      "texture_guidance_interval_start": 0,
+      "texture_guidance_interval_end": 0.9,
+      "use_tiled_decoder": true,
+      "sampler": "euler",
+      "pipeline": [
+        "16",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshWithVoxelAdvancedGenerator",
+    "_meta": {
+      "title": "Trellis2 - Mesh With Voxel Advanced Generator"
+    }
+  },
+  "20": {
+    "inputs": {
+      "seed": 12345,
+      "resolution": 1024,
+      "shape_steps": 25,
+      "shape_guidance_strength": 6.5,
+      "shape_guidance_rescale": 0.2,
+      "shape_rescale_t": 4,
+      "texture_steps": 25,
+      "texture_guidance_strength": 3,
+      "texture_guidance_rescale": 0.2,
+      "texture_rescale_t": 3,
+      "max_num_tokens": 999999,
+      "generate_texture_slat": false,
+      "downsampling": 16,
+      "shape_guidance_interval_start": 0.1,
+      "shape_guidance_interval_end": 1,
+      "texture_guidance_interval_start": 0,
+      "texture_guidance_interval_end": 0.9,
+      "use_tiled_decoder": true,
+      "max_views": 4,
+      "sampler": "euler",
+      "pipeline": [
+        "16",
+        0
+      ],
+      "trimesh": [
+        "32",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshRefiner",
+    "_meta": {
+      "title": "Trellis2 - Mesh Refiner"
+    }
+  },
+  "22": {
+    "inputs": {
+      "target_face_num": 500000,
+      "method": "Cumesh",
+      "mesh": [
+        "42",
+        0
+      ]
+    },
+    "class_type": "Trellis2SimplifyMesh",
+    "_meta": {
+      "title": "Trellis2 - Simplify Mesh"
+    }
+  },
+  "23": {
+    "inputs": {
+      "reorient_vertices": "90 degrees",
+      "mesh": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshWithVoxelToTrimesh",
+    "_meta": {
+      "title": "Trellis2 - Mesh With Voxel To Trimesh"
+    }
+  },
+  "25": {
+    "inputs": {
+      "seed": 12345,
+      "texture_steps": 25,
+      "texture_guidance_strength": 3,
+      "texture_guidance_rescale": 0.2,
+      "texture_rescale_t": 3,
+      "resolution": 1536,
+      "texture_size": 4096,
+      "texture_alpha_mode": "OPAQUE",
+      "double_side_material": false,
+      "texture_guidance_interval_start": 0,
+      "texture_guidance_interval_end": 0.9,
+      "max_views": 4,
+      "bake_on_vertices": false,
+      "use_custom_normals": false,
+      "mesh_cluster_threshold_cone_half_angle_rad": 40,
+      "sampler": "euler",
+      "inpainting": "telea",
+      "pipeline": [
+        "16",
+        0
+      ],
+      "image": [
+        "12",
+        0
+      ],
+      "trimesh": [
+        "33",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshTexturing",
+    "_meta": {
+      "title": "Trellis2 - Mesh Texturing"
+    }
+  },
+  "32": {
+    "inputs": {
+      "input_1": [
+        "14",
+        0
+      ],
+      "input_2": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "Trellis2Continue",
+    "_meta": {
+      "title": "Trellis2 - Continue"
+    }
+  },
+  "33": {
+    "inputs": {
+      "input_1": [
+        "23",
+        0
+      ],
+      "input_2": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "Trellis2Continue",
+    "_meta": {
+      "title": "Trellis2 - Continue"
+    }
+  },
+  "36": {
+    "inputs": {
+      "mesh": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "Trellis2FillHolesWithMeshlib",
+    "_meta": {
+      "title": "Trellis2 - Fill Holes with Meshlib"
+    }
+  },
+  "37": {
+    "inputs": {
+      "mesh": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "Trellis2FillHolesWithMeshlib",
+    "_meta": {
+      "title": "Trellis2 - Fill Holes with Meshlib"
+    }
+  },
+  "41": {
+    "inputs": {
+      "remesh_band": 1,
+      "resolution": 1024,
+      "remove_floaters": true,
+      "remove_inner_faces": true,
+      "mesh": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "Trellis2ReconstructMeshWithQuad",
+    "_meta": {
+      "title": "Trellis2 - Reconstruct Mesh With Quad"
+    }
+  },
+  "42": {
+    "inputs": {
+      "remesh_band": 1,
+      "resolution": 1024,
+      "remove_floaters": true,
+      "remove_inner_faces": true,
+      "mesh": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "Trellis2ReconstructMeshWithQuad",
+    "_meta": {
+      "title": "Trellis2 - Reconstruct Mesh With Quad"
+    }
+  },
+  "43": {
+    "inputs": {
+      "trimesh": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "Trellis2SmoothNormals",
+    "_meta": {
+      "title": "Trellis2 - Smooth Normals"
+    }
+  },
+  "44": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "ETN_LoadImageBase64",
+    "_meta": {
+      "title": "Load Image (Base64)"
+    }
+  },
+  "45": {
+    "inputs": {
+      "filename_prefix": "Trellis2_HQ",
+      "file_format": "glb",
+      "trimesh": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "Trellis2ExportMesh",
+    "_meta": {
+      "title": "Trellis2 - Export Mesh"
+    }
+  },
+  "46": {
+    "inputs": {
+      "filename_prefix": "Trellis2_HQ",
+      "file_format": "glb",
+      "trimesh": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "Trellis2ExportMesh",
+    "_meta": {
+      "title": "Trellis2 - Export Mesh"
+    }
+  },
+  "47": {
+    "inputs": {
+      "filename_prefix": "Trellis2_HQ",
+      "file_format": "glb",
+      "trimesh": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "Trellis2ExportMesh",
+    "_meta": {
+      "title": "Trellis2 - Export Mesh"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "36": {
+    "inputs": {
+      "model_name": "model.safetensors"
+    },
+    "class_type": "[Comfy3D] Load SF3D Model",
+    "_meta": {
+      "title": "Load SF3D Model"
+    }
+  },
+  "37": {
+    "inputs": {
+      "texture_resolution": 1024,
+      "remesh_option": "None",
+      "sf3d_model": [
+        "36",
+        0
+      ],
+      "reference_image": [
+        "40",
+        0
+      ],
+      "reference_mask": [
+        "40",
+        1
+      ]
+    },
+    "class_type": "[Comfy3D] StableFast3D",
+    "_meta": {
+      "title": "StableFast3D"
+    }
+  },
+  "38": {
+    "inputs": {
+      "mesh_file_path": [
+        "39",
+        0
+      ],
+      "preview3d": null
+    },
+    "class_type": "[Comfy3D] Preview 3DMesh",
+    "_meta": {
+      "title": "Preview 3DMesh"
+    }
+  },
+  "39": {
+    "inputs": {
+      "save_path": "SF3D_Test\\mesh.glb",
+      "mesh": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "[Comfy3D] Save 3D Mesh",
+    "_meta": {
+      "title": "Save 3D Mesh"
+    }
+  },
+  "40": {
+    "inputs": {
+      "foreground_ratio": 0.85,
+      "images": [
+        "45",
+        0
+      ],
+      "masks": [
+        "45",
+        1
+      ]
+    },
+    "class_type": "[Comfy3D] Resize Image Foreground",
+    "_meta": {
+      "title": "Resize Image Foreground"
+    }
+  },
+  "43": {
+    "inputs": {
+      "axis_x_to": "-x",
+      "axis_y_to": "-y",
+      "axis_z_to": "-z",
+      "flip_normal": false,
+      "scale": 1,
+      "mesh": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "[Comfy3D] Switch Mesh Axis",
+    "_meta": {
+      "title": "Switch Mesh Axis"
+    }
+  },
+  "45": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "ETN_LoadImageBase64",
+    "_meta": {
+      "title": "Krita_Input"
+    }
+  }
+}

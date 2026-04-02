@@ -1,0 +1,145 @@
+{
+  "19": {
+    "inputs": {
+      "filename_prefix": "Trellis2Mesh",
+      "file_format": "glb",
+      "trimesh": [
+        "43",
+        0
+      ]
+    },
+    "class_type": "Trellis2ExportMesh",
+    "_meta": {
+      "title": "Trellis2 - Export Mesh"
+    }
+  },
+  "39": {
+    "inputs": {
+      "modelname": "visualbruno/TRELLIS.2-4B-FP8",
+      "backend": "xformers",
+      "device": "cuda",
+      "low_vram": false,
+      "keep_models_loaded": false
+    },
+    "class_type": "Trellis2LoadModel",
+    "_meta": {
+      "title": "Trellis2 - LoadModel"
+    }
+  },
+  "41": {
+    "inputs": {
+      "seed": 1663532285,
+      "pipeline_type": "1024_cascade",
+      "sparse_structure_steps": 12,
+      "shape_steps": 12,
+      "texture_steps": 12,
+      "max_num_tokens": 999999,
+      "max_views": 4,
+      "sparse_structure_resolution": 32,
+      "generate_texture_slat": true,
+      "use_tiled_decoder": true,
+      "sampler": "euler",
+      "pipeline": [
+        "39",
+        0
+      ],
+      "image": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "Trellis2MeshWithVoxelGenerator",
+    "_meta": {
+      "title": "Trellis2 - Mesh With Voxel Generator"
+    }
+  },
+  "43": {
+    "inputs": {
+      "mesh_cluster_threshold_cone_half_angle_rad": 60,
+      "mesh_cluster_refine_iterations": 0,
+      "mesh_cluster_global_iterations": 1,
+      "mesh_cluster_smooth_strength": 1,
+      "texture_size": 4096,
+      "remesh": true,
+      "remesh_band": 1,
+      "remesh_project": 0,
+      "target_face_num": 2000000,
+      "simplify_method": "Cumesh",
+      "fill_holes": true,
+      "texture_alpha_mode": "OPAQUE",
+      "dual_contouring_resolution": "1024",
+      "double_side_material": false,
+      "remove_floaters": true,
+      "bake_on_vertices": false,
+      "use_custom_normals": false,
+      "remove_inner_faces": true,
+      "inpainting": "telea",
+      "mesh": [
+        "41",
+        0
+      ],
+      "bvh": [
+        "41",
+        1
+      ]
+    },
+    "class_type": "Trellis2PostProcessAndUnWrapAndRasterizer",
+    "_meta": {
+      "title": "Trellis2 - Post Process/UnWrap and Rasterize"
+    }
+  },
+  "44": {
+    "inputs": {
+      "padding": 0,
+      "remove_background": true,
+      "max_size": 2048,
+      "image": [
+        "46",
+        0
+      ]
+    },
+    "class_type": "Trellis2PreProcessImage",
+    "_meta": {
+      "title": "Trellis2 - PreProcess Image"
+    }
+  },
+  "45": {
+    "inputs": {
+      "image": ""
+    },
+    "class_type": "ETN_LoadImageBase64",
+    "_meta": {
+      "title": "Load Image (Base64)"
+    }
+  },
+  "46": {
+    "inputs": {
+      "image": "pasted/image (5).png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "47": {
+    "inputs": {
+      "model_file": [
+        "19",
+        0
+      ],
+      "show_grid": true,
+      "camera_type": "perspective",
+      "view": "front",
+      "material": "original",
+      "bg_color": "#000000",
+      "light_intensity": 10,
+      "up_direction": "original",
+      "fov": 75
+    },
+    "class_type": "Preview3D",
+    "_meta": {
+      "title": "Preview 3D"
+    }
+  }
+}
