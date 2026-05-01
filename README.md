@@ -2,6 +2,8 @@
 
 A simple Krita plugin that integrates 3D models (`.obj` and `.glb`) into your 2D painting and image editing workflows. It provides a hardware-accelerated 3D viewport, allowing you to manipulate and link 3D models directly to your Krita layers. Additionally, it features an optional direct integration with ComfyUI for generating 3D models straight from your Krita canvas (additional software needed).
 
+[Screen shots and some uses here.](https://github.com/agoulddesign/Krita-3D-Layer/discussions/1#discussion-9858205)
+
 ## ✨ Features
 
 - **Layer-Linked 3D State:** Import and position your 3D model and click "Apply Layer" button and the plugin automatically bakes the 3D state (model path, camera angles, rotations) into the `.kra` document registry.
